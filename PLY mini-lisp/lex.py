@@ -7,45 +7,66 @@
 import ply.lex as lex
 
 # List of token names.   
-tokens = ('QUOTE', 'SIMB', 'NUM', 'LPAREN', 'RPAREN', \
-'NIL', 'TRUE', 'FALSE', 'TEXT', 'PRINT', 'CONTENTS')
+tokens = [
+    'NIL',
+    'PRINT',
+    'CONTENTS',
+    'LPAREN',
+    'RPAREN',
+    'QUOTE',
+    'TRUE',
+    'FALSE',
+    'NUM',
+    'SYMB',
+    'TEXT'
+]
 
 # Reserved words
 reserved = {
     'nil' : 'NIL',
 }
 
-# Regular expression rules for simple tokens
+
+# # Regular expression rules for simple tokens
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_QUOTE = r'\''
 t_TRUE = r'\#t'
 t_FALSE = r'\#f'
-t_PRINT = r'print'
+
+
+def t_PRINT(t):
+    r'print'
+    t.type = reserved.get(t.value, 'PRINT')
+    print ("Lex.py: PRINT token found.")
+    return t
+
+def t_CONTENTS(t):
+    r'\(.*\)'
+    t.type = reserved.get(t.value, 'CONTENTS')
+    print ("Lex.py: CONTENTS token found.")
+    return t
 
 def t_NUM(t):
     r'\d+'
     try:
-        t.value = int(t.value)    
+        t.value = int(t.value)
     except ValueError:
         print "Line %d: Number %s is too large!" % (t.lineno,t.value)
         t.value = 0
     return t
 
-def t_SIMB(t):
+def t_SYMB(t):
     r'[a-zA-Z_+=\*\-][a-zA-Z0-9_+\*\-]*'
-    t.type = reserved.get(t.value,'SIMB')    # Check for reserved words
+    t.type = reserved.get(t.value,'SYMB')    # Check for reserved words
     return t
 
 def t_TEXT(t):
     r'\'[ -&,(-~]+\''
-    #r'\'[a-zA-Z0-9_+\*\- :,]*\''
+    # r'\'[a-zA-Z0-9_+\*\- :,]*\''
     t.type = reserved.get(t.value,'TEXT')    # Check for reserved words
     return t
 
-def t_CONTENTS(t):
-    r'????'
-    return t
 
 # Define a rule so we can track line numbers
 def t_newline(t):

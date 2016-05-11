@@ -1,0 +1,554 @@
+Created by PLY version 3.8 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> exp
+Rule 1     exp -> atom
+Rule 2     exp -> quoted_list
+Rule 3     exp -> call
+Rule 4     quoted_list -> QUOTE list
+Rule 5     list -> LPAREN items RPAREN
+Rule 6     items -> item items
+Rule 7     items -> empty
+Rule 8     empty -> <empty>
+Rule 9     item -> atom
+Rule 10    item -> quoted_list
+Rule 11    item -> call
+Rule 12    item -> empty
+Rule 13    contents -> CONTENTS
+Rule 14    print -> PRINT
+Rule 15    printline -> PRINT CONTENTS
+Rule 16    call -> PRINT CONTENTS
+Rule 17    atom -> SYMB
+Rule 18    atom -> bool
+Rule 19    atom -> NUM
+Rule 20    atom -> TEXT
+Rule 21    atom -> <empty>
+Rule 22    bool -> TRUE
+Rule 23    bool -> FALSE
+Rule 24    atom -> NIL
+
+Terminals, with rules where they appear
+
+CONTENTS             : 13 15 16
+FALSE                : 23
+LPAREN               : 5
+NIL                  : 24
+NUM                  : 19
+PRINT                : 14 15 16
+QUOTE                : 4
+RPAREN               : 5
+SYMB                 : 17
+TEXT                 : 20
+TRUE                 : 22
+error                : 
+
+Nonterminals, with rules where they appear
+
+atom                 : 1 9
+bool                 : 18
+call                 : 3 11
+contents             : 
+empty                : 7 12
+exp                  : 0
+item                 : 6
+items                : 5 6
+list                 : 4
+print                : 
+printline            : 
+quoted_list          : 2 10
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . exp
+    (1) exp -> . atom
+    (2) exp -> . quoted_list
+    (3) exp -> . call
+    (17) atom -> . SYMB
+    (18) atom -> . bool
+    (19) atom -> . NUM
+    (20) atom -> . TEXT
+    (21) atom -> .
+    (24) atom -> . NIL
+    (4) quoted_list -> . QUOTE list
+    (16) call -> . PRINT CONTENTS
+    (22) bool -> . TRUE
+    (23) bool -> . FALSE
+
+    SYMB            shift and go to state 13
+    NUM             shift and go to state 4
+    TEXT            shift and go to state 7
+    $end            reduce using rule 21 (atom -> .)
+    NIL             shift and go to state 9
+    QUOTE           shift and go to state 2
+    PRINT           shift and go to state 1
+    TRUE            shift and go to state 5
+    FALSE           shift and go to state 10
+
+    bool                           shift and go to state 3
+    quoted_list                    shift and go to state 6
+    call                           shift and go to state 8
+    exp                            shift and go to state 11
+    atom                           shift and go to state 12
+
+state 1
+
+    (16) call -> PRINT . CONTENTS
+
+    CONTENTS        shift and go to state 14
+
+
+state 2
+
+    (4) quoted_list -> QUOTE . list
+    (5) list -> . LPAREN items RPAREN
+
+    LPAREN          shift and go to state 15
+
+    list                           shift and go to state 16
+
+state 3
+
+    (18) atom -> bool .
+
+    $end            reduce using rule 18 (atom -> bool .)
+    SYMB            reduce using rule 18 (atom -> bool .)
+    NUM             reduce using rule 18 (atom -> bool .)
+    TEXT            reduce using rule 18 (atom -> bool .)
+    NIL             reduce using rule 18 (atom -> bool .)
+    QUOTE           reduce using rule 18 (atom -> bool .)
+    PRINT           reduce using rule 18 (atom -> bool .)
+    TRUE            reduce using rule 18 (atom -> bool .)
+    FALSE           reduce using rule 18 (atom -> bool .)
+    RPAREN          reduce using rule 18 (atom -> bool .)
+
+
+state 4
+
+    (19) atom -> NUM .
+
+    $end            reduce using rule 19 (atom -> NUM .)
+    SYMB            reduce using rule 19 (atom -> NUM .)
+    NUM             reduce using rule 19 (atom -> NUM .)
+    TEXT            reduce using rule 19 (atom -> NUM .)
+    NIL             reduce using rule 19 (atom -> NUM .)
+    QUOTE           reduce using rule 19 (atom -> NUM .)
+    PRINT           reduce using rule 19 (atom -> NUM .)
+    TRUE            reduce using rule 19 (atom -> NUM .)
+    FALSE           reduce using rule 19 (atom -> NUM .)
+    RPAREN          reduce using rule 19 (atom -> NUM .)
+
+
+state 5
+
+    (22) bool -> TRUE .
+
+    SYMB            reduce using rule 22 (bool -> TRUE .)
+    NUM             reduce using rule 22 (bool -> TRUE .)
+    TEXT            reduce using rule 22 (bool -> TRUE .)
+    NIL             reduce using rule 22 (bool -> TRUE .)
+    QUOTE           reduce using rule 22 (bool -> TRUE .)
+    PRINT           reduce using rule 22 (bool -> TRUE .)
+    TRUE            reduce using rule 22 (bool -> TRUE .)
+    FALSE           reduce using rule 22 (bool -> TRUE .)
+    RPAREN          reduce using rule 22 (bool -> TRUE .)
+    $end            reduce using rule 22 (bool -> TRUE .)
+
+
+state 6
+
+    (2) exp -> quoted_list .
+
+    $end            reduce using rule 2 (exp -> quoted_list .)
+
+
+state 7
+
+    (20) atom -> TEXT .
+
+    $end            reduce using rule 20 (atom -> TEXT .)
+    SYMB            reduce using rule 20 (atom -> TEXT .)
+    NUM             reduce using rule 20 (atom -> TEXT .)
+    TEXT            reduce using rule 20 (atom -> TEXT .)
+    NIL             reduce using rule 20 (atom -> TEXT .)
+    QUOTE           reduce using rule 20 (atom -> TEXT .)
+    PRINT           reduce using rule 20 (atom -> TEXT .)
+    TRUE            reduce using rule 20 (atom -> TEXT .)
+    FALSE           reduce using rule 20 (atom -> TEXT .)
+    RPAREN          reduce using rule 20 (atom -> TEXT .)
+
+
+state 8
+
+    (3) exp -> call .
+
+    $end            reduce using rule 3 (exp -> call .)
+
+
+state 9
+
+    (24) atom -> NIL .
+
+    $end            reduce using rule 24 (atom -> NIL .)
+    SYMB            reduce using rule 24 (atom -> NIL .)
+    NUM             reduce using rule 24 (atom -> NIL .)
+    TEXT            reduce using rule 24 (atom -> NIL .)
+    NIL             reduce using rule 24 (atom -> NIL .)
+    QUOTE           reduce using rule 24 (atom -> NIL .)
+    PRINT           reduce using rule 24 (atom -> NIL .)
+    TRUE            reduce using rule 24 (atom -> NIL .)
+    FALSE           reduce using rule 24 (atom -> NIL .)
+    RPAREN          reduce using rule 24 (atom -> NIL .)
+
+
+state 10
+
+    (23) bool -> FALSE .
+
+    SYMB            reduce using rule 23 (bool -> FALSE .)
+    NUM             reduce using rule 23 (bool -> FALSE .)
+    TEXT            reduce using rule 23 (bool -> FALSE .)
+    NIL             reduce using rule 23 (bool -> FALSE .)
+    QUOTE           reduce using rule 23 (bool -> FALSE .)
+    PRINT           reduce using rule 23 (bool -> FALSE .)
+    TRUE            reduce using rule 23 (bool -> FALSE .)
+    FALSE           reduce using rule 23 (bool -> FALSE .)
+    RPAREN          reduce using rule 23 (bool -> FALSE .)
+    $end            reduce using rule 23 (bool -> FALSE .)
+
+
+state 11
+
+    (0) S' -> exp .
+
+
+
+state 12
+
+    (1) exp -> atom .
+
+    $end            reduce using rule 1 (exp -> atom .)
+
+
+state 13
+
+    (17) atom -> SYMB .
+
+    $end            reduce using rule 17 (atom -> SYMB .)
+    SYMB            reduce using rule 17 (atom -> SYMB .)
+    NUM             reduce using rule 17 (atom -> SYMB .)
+    TEXT            reduce using rule 17 (atom -> SYMB .)
+    NIL             reduce using rule 17 (atom -> SYMB .)
+    QUOTE           reduce using rule 17 (atom -> SYMB .)
+    PRINT           reduce using rule 17 (atom -> SYMB .)
+    TRUE            reduce using rule 17 (atom -> SYMB .)
+    FALSE           reduce using rule 17 (atom -> SYMB .)
+    RPAREN          reduce using rule 17 (atom -> SYMB .)
+
+
+state 14
+
+    (16) call -> PRINT CONTENTS .
+
+    SYMB            reduce using rule 16 (call -> PRINT CONTENTS .)
+    NUM             reduce using rule 16 (call -> PRINT CONTENTS .)
+    TEXT            reduce using rule 16 (call -> PRINT CONTENTS .)
+    NIL             reduce using rule 16 (call -> PRINT CONTENTS .)
+    QUOTE           reduce using rule 16 (call -> PRINT CONTENTS .)
+    PRINT           reduce using rule 16 (call -> PRINT CONTENTS .)
+    TRUE            reduce using rule 16 (call -> PRINT CONTENTS .)
+    FALSE           reduce using rule 16 (call -> PRINT CONTENTS .)
+    RPAREN          reduce using rule 16 (call -> PRINT CONTENTS .)
+    $end            reduce using rule 16 (call -> PRINT CONTENTS .)
+
+
+state 15
+
+    (5) list -> LPAREN . items RPAREN
+    (6) items -> . item items
+    (7) items -> . empty
+    (9) item -> . atom
+    (10) item -> . quoted_list
+    (11) item -> . call
+    (12) item -> . empty
+    (8) empty -> .
+    (17) atom -> . SYMB
+    (18) atom -> . bool
+    (19) atom -> . NUM
+    (20) atom -> . TEXT
+    (21) atom -> .
+    (24) atom -> . NIL
+    (4) quoted_list -> . QUOTE list
+    (16) call -> . PRINT CONTENTS
+    (22) bool -> . TRUE
+    (23) bool -> . FALSE
+
+  ! shift/reduce conflict for SYMB resolved as shift
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for SYMB resolved as shift
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! reduce/reduce conflict for NIL resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for QUOTE resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for PRINT resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for TRUE resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for FALSE resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for RPAREN resolved using rule 8 (empty -> .)
+  ! shift/reduce conflict for NIL resolved as shift
+  ! shift/reduce conflict for QUOTE resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for TRUE resolved as shift
+  ! shift/reduce conflict for FALSE resolved as shift
+    RPAREN          reduce using rule 8 (empty -> .)
+    SYMB            shift and go to state 13
+    NUM             shift and go to state 4
+    TEXT            shift and go to state 7
+    NIL             shift and go to state 9
+    QUOTE           shift and go to state 2
+    PRINT           shift and go to state 1
+    TRUE            shift and go to state 5
+    FALSE           shift and go to state 10
+
+  ! SYMB            [ reduce using rule 8 (empty -> .) ]
+  ! NUM             [ reduce using rule 8 (empty -> .) ]
+  ! TEXT            [ reduce using rule 8 (empty -> .) ]
+  ! NIL             [ reduce using rule 8 (empty -> .) ]
+  ! QUOTE           [ reduce using rule 8 (empty -> .) ]
+  ! PRINT           [ reduce using rule 8 (empty -> .) ]
+  ! TRUE            [ reduce using rule 8 (empty -> .) ]
+  ! FALSE           [ reduce using rule 8 (empty -> .) ]
+  ! SYMB            [ reduce using rule 21 (atom -> .) ]
+  ! NUM             [ reduce using rule 21 (atom -> .) ]
+  ! TEXT            [ reduce using rule 21 (atom -> .) ]
+  ! NIL             [ reduce using rule 21 (atom -> .) ]
+  ! QUOTE           [ reduce using rule 21 (atom -> .) ]
+  ! PRINT           [ reduce using rule 21 (atom -> .) ]
+  ! TRUE            [ reduce using rule 21 (atom -> .) ]
+  ! FALSE           [ reduce using rule 21 (atom -> .) ]
+  ! RPAREN          [ reduce using rule 21 (atom -> .) ]
+
+    item                           shift and go to state 17
+    bool                           shift and go to state 3
+    quoted_list                    shift and go to state 18
+    empty                          shift and go to state 19
+    call                           shift and go to state 20
+    atom                           shift and go to state 21
+    items                          shift and go to state 22
+
+state 16
+
+    (4) quoted_list -> QUOTE list .
+
+    SYMB            reduce using rule 4 (quoted_list -> QUOTE list .)
+    NUM             reduce using rule 4 (quoted_list -> QUOTE list .)
+    TEXT            reduce using rule 4 (quoted_list -> QUOTE list .)
+    NIL             reduce using rule 4 (quoted_list -> QUOTE list .)
+    QUOTE           reduce using rule 4 (quoted_list -> QUOTE list .)
+    PRINT           reduce using rule 4 (quoted_list -> QUOTE list .)
+    TRUE            reduce using rule 4 (quoted_list -> QUOTE list .)
+    FALSE           reduce using rule 4 (quoted_list -> QUOTE list .)
+    RPAREN          reduce using rule 4 (quoted_list -> QUOTE list .)
+    $end            reduce using rule 4 (quoted_list -> QUOTE list .)
+
+
+state 17
+
+    (6) items -> item . items
+    (6) items -> . item items
+    (7) items -> . empty
+    (9) item -> . atom
+    (10) item -> . quoted_list
+    (11) item -> . call
+    (12) item -> . empty
+    (8) empty -> .
+    (17) atom -> . SYMB
+    (18) atom -> . bool
+    (19) atom -> . NUM
+    (20) atom -> . TEXT
+    (21) atom -> .
+    (24) atom -> . NIL
+    (4) quoted_list -> . QUOTE list
+    (16) call -> . PRINT CONTENTS
+    (22) bool -> . TRUE
+    (23) bool -> . FALSE
+
+  ! shift/reduce conflict for SYMB resolved as shift
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for SYMB resolved as shift
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! reduce/reduce conflict for NIL resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for QUOTE resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for PRINT resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for TRUE resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for FALSE resolved using rule 8 (empty -> .)
+  ! reduce/reduce conflict for RPAREN resolved using rule 8 (empty -> .)
+  ! shift/reduce conflict for NIL resolved as shift
+  ! shift/reduce conflict for QUOTE resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for TRUE resolved as shift
+  ! shift/reduce conflict for FALSE resolved as shift
+    RPAREN          reduce using rule 8 (empty -> .)
+    SYMB            shift and go to state 13
+    NUM             shift and go to state 4
+    TEXT            shift and go to state 7
+    NIL             shift and go to state 9
+    QUOTE           shift and go to state 2
+    PRINT           shift and go to state 1
+    TRUE            shift and go to state 5
+    FALSE           shift and go to state 10
+
+  ! SYMB            [ reduce using rule 8 (empty -> .) ]
+  ! NUM             [ reduce using rule 8 (empty -> .) ]
+  ! TEXT            [ reduce using rule 8 (empty -> .) ]
+  ! NIL             [ reduce using rule 8 (empty -> .) ]
+  ! QUOTE           [ reduce using rule 8 (empty -> .) ]
+  ! PRINT           [ reduce using rule 8 (empty -> .) ]
+  ! TRUE            [ reduce using rule 8 (empty -> .) ]
+  ! FALSE           [ reduce using rule 8 (empty -> .) ]
+  ! SYMB            [ reduce using rule 21 (atom -> .) ]
+  ! NUM             [ reduce using rule 21 (atom -> .) ]
+  ! TEXT            [ reduce using rule 21 (atom -> .) ]
+  ! NIL             [ reduce using rule 21 (atom -> .) ]
+  ! QUOTE           [ reduce using rule 21 (atom -> .) ]
+  ! PRINT           [ reduce using rule 21 (atom -> .) ]
+  ! TRUE            [ reduce using rule 21 (atom -> .) ]
+  ! FALSE           [ reduce using rule 21 (atom -> .) ]
+  ! RPAREN          [ reduce using rule 21 (atom -> .) ]
+
+    item                           shift and go to state 17
+    bool                           shift and go to state 3
+    quoted_list                    shift and go to state 18
+    empty                          shift and go to state 19
+    call                           shift and go to state 20
+    atom                           shift and go to state 21
+    items                          shift and go to state 23
+
+state 18
+
+    (10) item -> quoted_list .
+
+    SYMB            reduce using rule 10 (item -> quoted_list .)
+    NUM             reduce using rule 10 (item -> quoted_list .)
+    TEXT            reduce using rule 10 (item -> quoted_list .)
+    NIL             reduce using rule 10 (item -> quoted_list .)
+    QUOTE           reduce using rule 10 (item -> quoted_list .)
+    PRINT           reduce using rule 10 (item -> quoted_list .)
+    TRUE            reduce using rule 10 (item -> quoted_list .)
+    FALSE           reduce using rule 10 (item -> quoted_list .)
+    RPAREN          reduce using rule 10 (item -> quoted_list .)
+
+
+state 19
+
+    (7) items -> empty .
+    (12) item -> empty .
+
+  ! reduce/reduce conflict for RPAREN resolved using rule 7 (items -> empty .)
+    RPAREN          reduce using rule 7 (items -> empty .)
+    SYMB            reduce using rule 12 (item -> empty .)
+    NUM             reduce using rule 12 (item -> empty .)
+    TEXT            reduce using rule 12 (item -> empty .)
+    NIL             reduce using rule 12 (item -> empty .)
+    QUOTE           reduce using rule 12 (item -> empty .)
+    PRINT           reduce using rule 12 (item -> empty .)
+    TRUE            reduce using rule 12 (item -> empty .)
+    FALSE           reduce using rule 12 (item -> empty .)
+
+  ! RPAREN          [ reduce using rule 12 (item -> empty .) ]
+
+
+state 20
+
+    (11) item -> call .
+
+    SYMB            reduce using rule 11 (item -> call .)
+    NUM             reduce using rule 11 (item -> call .)
+    TEXT            reduce using rule 11 (item -> call .)
+    NIL             reduce using rule 11 (item -> call .)
+    QUOTE           reduce using rule 11 (item -> call .)
+    PRINT           reduce using rule 11 (item -> call .)
+    TRUE            reduce using rule 11 (item -> call .)
+    FALSE           reduce using rule 11 (item -> call .)
+    RPAREN          reduce using rule 11 (item -> call .)
+
+
+state 21
+
+    (9) item -> atom .
+
+    SYMB            reduce using rule 9 (item -> atom .)
+    NUM             reduce using rule 9 (item -> atom .)
+    TEXT            reduce using rule 9 (item -> atom .)
+    NIL             reduce using rule 9 (item -> atom .)
+    QUOTE           reduce using rule 9 (item -> atom .)
+    PRINT           reduce using rule 9 (item -> atom .)
+    TRUE            reduce using rule 9 (item -> atom .)
+    FALSE           reduce using rule 9 (item -> atom .)
+    RPAREN          reduce using rule 9 (item -> atom .)
+
+
+state 22
+
+    (5) list -> LPAREN items . RPAREN
+
+    RPAREN          shift and go to state 24
+
+
+state 23
+
+    (6) items -> item items .
+
+    RPAREN          reduce using rule 6 (items -> item items .)
+
+
+state 24
+
+    (5) list -> LPAREN items RPAREN .
+
+    $end            reduce using rule 5 (list -> LPAREN items RPAREN .)
+    SYMB            reduce using rule 5 (list -> LPAREN items RPAREN .)
+    NUM             reduce using rule 5 (list -> LPAREN items RPAREN .)
+    TEXT            reduce using rule 5 (list -> LPAREN items RPAREN .)
+    NIL             reduce using rule 5 (list -> LPAREN items RPAREN .)
+    QUOTE           reduce using rule 5 (list -> LPAREN items RPAREN .)
+    PRINT           reduce using rule 5 (list -> LPAREN items RPAREN .)
+    TRUE            reduce using rule 5 (list -> LPAREN items RPAREN .)
+    FALSE           reduce using rule 5 (list -> LPAREN items RPAREN .)
+    RPAREN          reduce using rule 5 (list -> LPAREN items RPAREN .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for SYMB in state 15 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 15 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 15 resolved as shift
+WARNING: shift/reduce conflict for SYMB in state 15 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 15 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 15 resolved as shift
+WARNING: shift/reduce conflict for NIL in state 15 resolved as shift
+WARNING: shift/reduce conflict for QUOTE in state 15 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 15 resolved as shift
+WARNING: shift/reduce conflict for TRUE in state 15 resolved as shift
+WARNING: shift/reduce conflict for FALSE in state 15 resolved as shift
+WARNING: shift/reduce conflict for SYMB in state 17 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 17 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 17 resolved as shift
+WARNING: shift/reduce conflict for SYMB in state 17 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 17 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 17 resolved as shift
+WARNING: shift/reduce conflict for NIL in state 17 resolved as shift
+WARNING: shift/reduce conflict for QUOTE in state 17 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 17 resolved as shift
+WARNING: shift/reduce conflict for TRUE in state 17 resolved as shift
+WARNING: shift/reduce conflict for FALSE in state 17 resolved as shift
+WARNING: reduce/reduce conflict in state 15 resolved using rule (empty -> <empty>)
+WARNING: rejected rule (atom -> <empty>) in state 15
+WARNING: reduce/reduce conflict in state 17 resolved using rule (empty -> <empty>)
+WARNING: rejected rule (atom -> <empty>) in state 17
+WARNING: reduce/reduce conflict in state 19 resolved using rule (items -> empty)
+WARNING: rejected rule (item -> empty) in state 19

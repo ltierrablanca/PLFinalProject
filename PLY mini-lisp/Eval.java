@@ -2,7 +2,7 @@
     // this post [https://stackoverflow.com/a/26227947] on Oct. 7, 2014. Our group is thankful to Boann for the contribution.
 
 public class Eval {
-    public static double eval(final String str) {
+    public static double evaluate(final String str) {
         return new Object() {
             int pos = -1, ch;
 
