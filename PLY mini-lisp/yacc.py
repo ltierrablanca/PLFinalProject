@@ -189,6 +189,10 @@ def p_call(p):
     p[0] = ast
     #p[0] = lisp_eval(p[2], p[3])
 
+def s_call(p):
+    'call : PRINT CONTENTS'
+    p[0] = "hello world!"
+
 def p_atom_simbol(p):
     'atom : SIMB'
     p[0] = p[1]
